@@ -1,28 +1,18 @@
-# Jacob's University Hub
+# Jacob’s University Hub — cloud version
 
-A mobile-friendly, static university decision tracker for five UK Quantity Surveying choices, targeting September 2027 entry.
+## Deployment
+1. In `config.js`, replace `PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE` with the **publishable** key (`sb_publishable_...`) from Supabase. Never use the secret key.
+2. Upload `index.html` and `config.js` to the **root** of the existing GitHub repository, replacing the old `index.html`.
+3. Vercel redeploys automatically from GitHub. Open the Vercel URL and sign in with the Supabase users you created.
+4. Confirm the sidebar says `Saved to cloud ✓` after making a change. Sign in on another device to verify the same data appears.
 
-## Deploy with GitHub Pages
+## Existing data
+Before uploading, open the OLD live site, go to Data & backup and download the JSON backup. After updating, sign in and use Data & backup → Import JSON backup to upload that saved file. This replaces the cloud state. **Only import once**, on one device.
 
-1. Create a new GitHub repository (for example `jacob-university-hub`).
-2. Upload `index.html` to the repository root and commit.
-3. Go to **Settings → Pages → Build and deployment**, select **Deploy from a branch**, choose **main** and **/(root)**, and save.
-4. Open the published GitHub Pages URL on a phone or computer.
-
-## Important: data and privacy
-
-The app stores data in the current browser's `localStorage`. It does not sync between devices. Use **Data & backup → Download data backup** and **Import JSON backup** to transfer records. GitHub Pages sites are public by default: do not store private personal information, addresses or financial account details in the repository. The app's entered notes stay in the browser unless exported or shared.
-
-## Features
-
-- Five-university overview and UCAS offer tracking
-- Weighted seven-category visit scorecards
-- First-year living cost and funding-gap planner
-- Editable timeline and additional tasks
-- JSON export/import backup
-- Responsive desktop and mobile design
-
-## Accuracy
-
-The UCAS 13 January 2027 equal-consideration deadline is provided as a reference. Other milestone dates are editable planning targets. Fees, halls, maintenance loans, accreditation and entry offers must be verified against official university/UCAS/student finance sources. No current accommodation costs have been assumed.
-
+## Security and limitations
+- This uses the existing `workspaces`, `workspace_members`, `records` tables and RLS policies.
+- Only users already granted workspace membership can read/write records.
+- Public HTML and `config.js` are visible to visitors; the publishable key is intended to be public. **Never include a secret/service-role key**.
+- Current cloud storage is a single shared JSON document. Avoid editing simultaneously on multiple devices (last writer wins). Export backups regularly.
+- Cloud synchronisation needs a network connection; watch the save status.
+- The Vercel `NEXT_PUBLIC_...` environment variables alone do not configure this static HTML app. `config.js` is required.
