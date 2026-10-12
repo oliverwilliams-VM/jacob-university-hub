@@ -25,3 +25,4 @@ The app stores data in the current browser's `localStorage`. It does not sync be
 ## Accuracy
 
 The UCAS 13 January 2027 equal-consideration deadline is provided as a reference. Other milestone dates are editable planning targets. Fees, halls, maintenance loans, accreditation and entry offers must be verified against official university/UCAS/student finance sources. No current accommodation costs have been assumed.
+
